@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class InicioSesion extends StatelessWidget {
@@ -6,9 +8,9 @@ class InicioSesion extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(''),
-        centerTitle: true, // Centra el título en la AppBar
+        centerTitle: true,
       ),
-      body: SingleChildScrollView( // Widget que permite desplazar el contenido si se desborda
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
@@ -17,31 +19,31 @@ class InicioSesion extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 20.0),
               Image.asset(
-                'assets/img/usuario.png', // Ajusta la ruta de la imagen según la ubicación de tu imagen
+                'assets/img/usuario.png',
                 height: 150.0,
               ),
               SizedBox(height: 40.0),
               Text(
                 'Inicio de Sesión',
-                textAlign: TextAlign.center, // Centra el texto
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 24.0, // Tamaño de fuente más grande
-                  fontWeight: FontWeight.bold, // Texto en negrita
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 40.0),
               Container(
-                width: double.infinity, // Ancho máximo
+                width: double.infinity,
                 child: TextField(
                   decoration: InputDecoration(
-                    labelText: 'Usuario', // Cambiado de 'Correo' a 'Usuario'
-                    prefixIcon: Icon(Icons.person), // Cambiado de Icons.email a Icons.person
+                    labelText: 'Usuario',
+                    prefixIcon: Icon(Icons.person),
                   ),
                 ),
               ),
               SizedBox(height: 20.0),
               Container(
-                width: double.infinity, // Ancho máximo
+                width: double.infinity,
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -53,17 +55,14 @@ class InicioSesion extends StatelessWidget {
               SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
-                  // Aquí se debe implementar la lógica de validación de las credenciales
-                  // Puedes usar una función para verificar los datos ingresados
-                  // y navegar a la pantalla de inicio si son válidos
+                  
                 },
                 child: Text('Iniciar Sesión'),
               ),
               SizedBox(height: 20.0),
               TextButton(
                 onPressed: () {
-                  // Aquí se debe implementar la navegación a la pantalla de registro
-                  // Puedes usar el método Navigator.push para navegar a la pantalla de registro
+                 
                 },
                 child: Text('Registrarse', style: TextStyle(color: Colors.blue)),
               ),
