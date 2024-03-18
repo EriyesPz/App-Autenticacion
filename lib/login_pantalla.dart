@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'registro_pantalla.dart'; // Importa el archivo de la pantalla de registro
+import 'registro_pantalla.dart';
+import 'home_pantalla.dart';
 
 class InicioSesion extends StatelessWidget {
   @override
@@ -52,7 +53,10 @@ class InicioSesion extends StatelessWidget {
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                // Implementa la lógica de autenticación aquí
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context)=> PantallaInicio()),
+                );
               },
               child: Text('Iniciar Sesión'),
             ),
