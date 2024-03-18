@@ -1,16 +1,15 @@
 # app_autenticacion
 
-A new Flutter project.
 
-## Getting Started
+## Erick Josue Reyes Paz - 20222001353
+## Lenguajes de Programacion - IS513-1700
 
-This project is a starting point for a Flutter application.
+Tarea de la segunda unidad
 
-A few resources to get you started if this is your first Flutter project:
+Esta tarea consiste en la creacion de 3 pantallas.
+  -Tarea de la segunda unidad
+  -Pantalla de registro
+  -Pantalla de inicio
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Inicialmente cree una lista que incluya mi nombre, email, pass y telefono que se encuentra en el archivo env.dart
+a partir de esto se pueden crear la cantidad de usuarios que desee y los agrega a la lista de usuarios. En el archivo registro_pantalla se pueden crear los usuarios y loguear las veces que se requieran.
