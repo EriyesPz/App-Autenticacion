@@ -25,7 +25,7 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
   TextEditingController _contrasenaController = TextEditingController();
   TextEditingController _confirmarContrasenaController = TextEditingController();
 
-  void _registrarUsuario() {
+  void _registrarUsuario(BuildContext context) {
     String nombre = _nombreController.text;
     String correo = _correoController.text;
     String telefono = _telefonoController.text;
@@ -39,15 +39,59 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
       // Agregar el nuevo usuario a la lista
       widget.listaUsuarios.add(nuevoUsuario);
 
-      // Imprimir información del nuevo usuario
-      print('Usuario registrado:');
-      print('Nombre: ${nuevoUsuario.nombre}');
-      print('Correo: ${nuevoUsuario.correo}');
-      print('Teléfono: ${nuevoUsuario.telefono}');
-      print('Contraseña: ${nuevoUsuario.contrasena}');
+      // Mostrar mensaje emergente
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Usuario registrado'),
+            content: Text('El usuario $nombre ha sido registrado satisfactoriamente.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+
+      // Limpiar los campos de texto después de registrar al usuario
+      _nombreController.clear();
+      _correoController.clear();
+      _telefonoController.clear();
+      _contrasenaController.clear();
+      _confirmarContrasenaController.clear();
+
     } else {
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Datos incorrectos'),
+            content: Text('No se ha podido registrar el usuario'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+
       // Si las contraseñas no coinciden, mostrar un mensaje de error
-      print('Error: Las contraseñas no coinciden');
+      print('Error: Las contraseñas no coinciden');_nombreController.clear();
+      _correoController.clear();
+      _telefonoController.clear();
+      _contrasenaController.clear();
+      _confirmarContrasenaController.clear();
+
     }
   }
 
@@ -106,7 +150,7 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: _registrarUsuario,
+              onPressed: () => _registrarUsuario(context),
               child: Text('Registrarse'),
             ),
           ],
