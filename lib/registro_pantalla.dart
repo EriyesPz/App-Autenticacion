@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
+class Usuario {
+  String nombre;
+  String correo;
+  String telefono;
+  String contrasena;
+
+  Usuario({required this.nombre, required this.correo, required this.telefono, required this.contrasena});
+}
+
 class PantallaRegistro extends StatefulWidget {
+  final List<Usuario> listaUsuarios;
+
+  PantallaRegistro({required this.listaUsuarios});
+
   @override
   _PantallaRegistroState createState() => _PantallaRegistroState();
 }
@@ -18,10 +31,24 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
     String telefono = _telefonoController.text;
     String contrasena = _contrasenaController.text;
 
-    print('Nombre: $nombre');
-    print('Correo: $correo');
-    print('Teléfono: $telefono');
-    print('Contraseña: $contrasena');
+    // Validar que las contraseñas coincidan
+    if (contrasena == _confirmarContrasenaController.text) {
+      // Crear un nuevo usuario
+      Usuario nuevoUsuario = Usuario(nombre: nombre, correo: correo, telefono: telefono, contrasena: contrasena);
+      
+      // Agregar el nuevo usuario a la lista
+      widget.listaUsuarios.add(nuevoUsuario);
+
+      // Imprimir información del nuevo usuario
+      print('Usuario registrado:');
+      print('Nombre: ${nuevoUsuario.nombre}');
+      print('Correo: ${nuevoUsuario.correo}');
+      print('Teléfono: ${nuevoUsuario.telefono}');
+      print('Contraseña: ${nuevoUsuario.contrasena}');
+    } else {
+      // Si las contraseñas no coinciden, mostrar un mensaje de error
+      print('Error: Las contraseñas no coinciden');
+    }
   }
 
   @override

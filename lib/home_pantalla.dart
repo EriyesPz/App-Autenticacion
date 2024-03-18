@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'login_pantalla.dart';
 
 class PantallaInicio extends StatelessWidget {
+  final String nombreUsuario;
+
+  PantallaInicio({required this.nombreUsuario});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +23,7 @@ class PantallaInicio extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              '¡Bienvenido!',
+              '¡Bienvenido, $nombreUsuario!', // Concatena el nombre de usuario con el mensaje de bienvenida
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
