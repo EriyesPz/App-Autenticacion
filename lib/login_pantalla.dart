@@ -13,18 +13,16 @@ class _InicioSesionState extends State<InicioSesion> {
   TextEditingController _passwordController = TextEditingController();
 
   void _iniciarSesion(BuildContext context) {
-    // Obtener valores del correo electrónico y la contraseña
     String email = _emailController.text;
     String password = _passwordController.text;
 
     // Buscar el usuario en la lista de credenciales
     var usuario = Credenciales.usuarios.firstWhere(
       (usuario) => usuario['email'] == email && usuario['contrasena'] == password,
-      orElse: () => <String, String>{}
+      orElse: () => <String, String>{},
     );
 
     if (usuario.isNotEmpty) {
-      // Obtener el nombre del usuario
       String nombreUsuario = usuario['nombre'] ?? '';
 
       // Navegar a la pantalla de inicio y pasar el nombre de usuario como parámetro
@@ -32,7 +30,12 @@ class _InicioSesionState extends State<InicioSesion> {
         context,
         MaterialPageRoute(builder: (context) => PantallaInicio(nombreUsuario: nombreUsuario)),
       );
+      _passwordController.clear();
+      _emailController.clear();
     } else {
+
+      _passwordController.clear();
+      _emailController.clear();
       // Mostrar diálogo de error
       showDialog(
         context: context,
@@ -106,7 +109,7 @@ class _InicioSesionState extends State<InicioSesion> {
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                _iniciarSesion(context); // Llama al método _iniciarSesion con el contexto actual
+                _iniciarSesion(context);
               },
               child: Text('Iniciar Sesión'),
             ),
@@ -115,7 +118,7 @@ class _InicioSesionState extends State<InicioSesion> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PantallaRegistro(listaUsuarios: [],)),
+                  MaterialPageRoute(builder: (context) => PantallaRegistro(listaUsuarios: [])),
                 );
               },
               child: Text('Registrarse', style: TextStyle(color: Colors.blue)),

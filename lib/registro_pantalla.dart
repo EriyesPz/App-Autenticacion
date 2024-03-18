@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'env.dart';
 
 class Usuario {
   String nombre;
@@ -6,7 +9,12 @@ class Usuario {
   String telefono;
   String contrasena;
 
-  Usuario({required this.nombre, required this.correo, required this.telefono, required this.contrasena});
+  Usuario({
+    required this.nombre,
+    required this.correo,
+    required this.telefono,
+    required this.contrasena,
+  });
 }
 
 class PantallaRegistro extends StatefulWidget {
@@ -31,13 +39,20 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
     String telefono = _telefonoController.text;
     String contrasena = _contrasenaController.text;
 
-    // Validar que las contraseñas coincidan
     if (contrasena == _confirmarContrasenaController.text) {
-      // Crear un nuevo usuario
-      Usuario nuevoUsuario = Usuario(nombre: nombre, correo: correo, telefono: telefono, contrasena: contrasena);
-      
-      // Agregar el nuevo usuario a la lista
+      Usuario nuevoUsuario =
+          Usuario(nombre: nombre, correo: correo, telefono: telefono, contrasena: contrasena);
+
+      // Agregar el nuevo usuario a la lista local de usuarios
       widget.listaUsuarios.add(nuevoUsuario);
+
+      // Agregar el nuevo usuario a la lista de credenciales
+      Credenciales.usuarios.add({
+        'email': correo,
+        'contrasena': contrasena,
+        'nombre': nombre,
+        'telefono': telefono,
+      });
 
       // Mostrar mensaje emergente
       showDialog(
@@ -58,15 +73,19 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
         },
       );
 
+      print('Usuario registrado correctamente');
+      print("Nombre: $nombre");
+      print('Email: $correo');
+      print('Telefono: $telefono');
+      print('Contraseña: $contrasena');
+
       // Limpiar los campos de texto después de registrar al usuario
       _nombreController.clear();
       _correoController.clear();
       _telefonoController.clear();
       _contrasenaController.clear();
       _confirmarContrasenaController.clear();
-
     } else {
-
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -84,14 +103,12 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
           );
         },
       );
-
-      // Si las contraseñas no coinciden, mostrar un mensaje de error
-      print('Error: Las contraseñas no coinciden');_nombreController.clear();
+      print('Error: Las contraseñas no coinciden');
+      _nombreController.clear();
       _correoController.clear();
       _telefonoController.clear();
       _contrasenaController.clear();
       _confirmarContrasenaController.clear();
-
     }
   }
 
